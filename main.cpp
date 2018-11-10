@@ -34,13 +34,20 @@ int main() {
 
       // display the front value
       else if(selection == 2) {
-         cout << "Front value: " << list->getFront() << endl;
+         if(list->isEmpty() == true) {
+            cout << "List is empty..." << endl;
+         }
+         else {
+            cout << "Front value: " << list->getFront() << endl;
+         }
       }
 
       // remove the front node
       else if(selection == 3) {
          list->removeFront();
-         list->printQueue();
+         if(list->isEmpty() == false) {
+            list->printQueue();
+         }
       }
 
       // display the queue's contents

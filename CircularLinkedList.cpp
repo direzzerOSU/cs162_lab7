@@ -71,22 +71,43 @@ void Queue::addBack(int value) {
 }
 
 int Queue::getFront() {
-   return head->val;
+   if(isEmpty() == true) {
+      cout << "List is empty..." << endl;
+   }
+   else {
+      return head->val;
+   }
 }
 
 void Queue::removeFront() {
-   QueueNode* node = head->next;
-
-   while(node->next != nullptr && node->next != head) {
-      node = node->next;
+   
+   if(isEmpty() == true) {
+      cout << "List is empty..." << endl;
    }
 
-   QueueNode* temp = head;
-   head = head->next;
-   delete temp;
-   
-   head->prev = node;
-   node->next = head;
+   else {
+      
+      if(head->next == nullptr && head->prev == nullptr) {
+         delete head;
+         head = nullptr;
+         cout << "List is now empty..." << endl;
+      }
+
+      else {
+         QueueNode* node = head->next;
+
+         while(node->next != nullptr && node->next != head) {
+            node = node->next;
+         }
+
+         QueueNode* temp = head;
+         head = head->next;
+         delete temp;
+         
+         head->prev = node;
+         node->next = head;
+      }
+   }
 }
 
 void Queue::printQueue() {
